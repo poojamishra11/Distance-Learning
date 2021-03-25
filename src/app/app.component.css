@@ -1,0 +1,6 @@
+.image{
+    height:40em; background-size:cover; width:auto;
+    background-image:url('..\assets\image\app-background.jpg');
+    background-position:10% 10%;
+    opacity: .8;
+  }
