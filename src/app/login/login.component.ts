@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
               if (username.localeCompare(result[i].username) == 0 && password.localeCompare(result[i].password) == 0) {
                 console.log("done");
       
-                sessionStorage.setItem('hardauthenticateUser', username);
+                sessionStorage.setItem('authenticaterUser', username);
                 this.router.navigate(['home']);
                 this.alert = false;
       
@@ -61,4 +61,6 @@ export class LoginComponent implements OnInit {
   //   })
 
    }
+
+  
   }

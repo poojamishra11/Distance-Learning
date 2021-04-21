@@ -12,10 +12,7 @@ export class HardcodedAuthenticationService {
   constructor(private http: HttpClient) { }
  
 
-  isUserLoggedIn(){
-    let user = sessionStorage.getItem('authenticateUser')
-    return !(user === null)
-  }
+  
 
   
 
@@ -27,8 +24,12 @@ export class HardcodedAuthenticationService {
     return this.http.get<any[]>(this.url);
   }
 
+  isUserLoggedIn(){
+    let user = sessionStorage.getItem('authenticaterUser')
+    return !(user === null)
+  }
   logout(){
-    sessionStorage.removeItem('authenticateUser')
+    sessionStorage.removeItem('authenticaterUser')
   }
 
 
