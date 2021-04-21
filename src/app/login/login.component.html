@@ -1,14 +1,45 @@
-<div class="container">
+<div class="container" fxLayoutAlign="center center" fxFlexFill >
+    <mat-card fxFlex="25">
+        <div class="card" style="width: 18rem;">
+            <mat-toolbar color="primary"> Login </mat-toolbar>
+            <!-- <h1 style="background:rgb(223, 32, 64);"> Login </h1> -->
+            <img src="..\assets\image\login-background.jpg" class="card-img-top">
+            <div class="card-body">
+                User Name: <input type="text" name="username" id="username" ngModel>
+                Password: <input type="password" name="password" id="password" ngModel><br>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label><br>
+                </div>
+                <button (click)=handleLogin() class="btn btn-success"> Login </button>
+                <div class="alert alert-warning" *ngIf='alert'> {{ errorMessage }} </div>
+            </div>
+        </div>
+    </mat-card>
+</div>
 
-    <div class="card" style="width: 18rem;">
-        <h1> Login </h1>
-        <img src="..\assets\image\login-background.jpg" class="card-img-top">
-        <div class="card-body">
-            User Name: <input type="text" [(ngModel)]="username">
-            Password: <input type="password" [(ngModel)]="password">
+
+
+<!-- <app-header></app-header>
+
+<div class="main-div" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary"> Login </mat-toolbar>
+        <form fxLayoutAlign= "stretch" fxLayout="column" class="login-form" [formGroup]="formGroup"
+        (ngSubmit)="loginProcess()">
+        <mat-form-field>
+            <input matInput placeholder="username" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="username" formControlName="password">
+        </mat-form-field>
+            <button mat-raised-button type="submit" class="mt-5" color="primary"> Login </button>
             <button (click)=handleLogin() class="btn btn-success"> Login </button>
             <div class="alert alert-warning" *ngIf='invalidLogin'> {{ errorMessage }} </div>
-        </div>
-    </div>
-
+        </form>
+    </mat-card>
 </div>
+
+<app-footer></app-footer> -->

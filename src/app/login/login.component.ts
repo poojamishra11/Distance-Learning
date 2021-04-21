@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl} from '@angular/forms';
 // import { FormBuilder } from '@angular/forms';
 import{ Router } from '@angular/router';
-import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service'
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,28 +11,54 @@ import { HardcodedAuthenticationService } from '../service/hardcoded-authenticat
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+ 
 
-  username = ''
-  password = ''
   errorMessage = 'Invalid Credentials'
   invalidLogin = false
-
+  alert:boolean = false
+  
   constructor(private router: Router, private hardcodedAuthenticationService: HardcodedAuthenticationService) { }
 
   ngOnInit(): void {
+
   }
 
   handleLogin() {
-     console.log(this.username)
-     console.log(this.password)
+    var username = (<HTMLSelectElement>document.getElementById('username')).value;
+    var password = (<HTMLSelectElement>document.getElementById('password')).value;
+    console.log(username);
+    console.log(password);
 
-    if(this.hardcodedAuthenticationService.authenticate(this.username, this.password)){
-      this.router.navigate(['home'])
-      this.invalidLogin = false
-    }
-    else{
-      this.invalidLogin = true
-    }
+    this.hardcodedAuthenticationService.loginUser().subscribe((result:any) => {
+      for ( var i = 0; i < result.length; i++) {
+              if (username.localeCompare(result[i].username) == 0 && password.localeCompare(result[i].password) == 0) {
+                console.log("done");
+      
+                sessionStorage.setItem('hardauthenticateUser', username);
+                this.router.navigate(['home']);
+                this.alert = false;
+      
+              } else{
+                this.alert = true;
+              }
+            }
+    })
+  //   this.hardcodedAuthenticationService.loginUser().subscribe((result:any) -> {
+  //     for ( var i = 0; i < result.length; i++) {
+  //       if (username.localeCompare(result[i].username) == 0 && password.localeCompare(result[i].password) == 0) {
+  //         console.log("done");
+
+  //         sessionStorage.setItem('hardauthenticateUser', username);
+  //         this.router.navigate(['home']);
+  //         this.alert = false;
+
+  //       } else{
+  //         this.alert = true;
+  //       }
+  //     }
+    
+  
+  //   })
+
+   }
   }
-
-}

@@ -1,52 +1,110 @@
-<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #073150;">
-    <img height="50px" width="50px" alt=" imed-logo" src="..\assets\image\imed-logo.jpg"> &nbsp;
 
-    &nbsp; <a class="navbar-brand" href="\home">Home</a>
-    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="\admission"> Admission <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="\examination"> Examination </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="\assignment"> Assignment </a>
-            </li>
-
-            <!-- <li class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a> -->
-
-            <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="\course" id="dropdownId" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Course</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">BCA</a>
-                    <a class="dropdown-item" href="#">MCA</a>
-                    <a class="dropdown-item" href="#">BBA</a>
-                    <a class="dropdown-item" href="#">MBA </a>
-                </div>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="\login"> Login </a>
-            </li>
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <button class="btn btn-outline-danger my-2 my-sm-0 logout" type="logout"
-                routerLink="/logout">logout</button>
-        </form>
-        <ul>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #073150;">
+        <img height="50px" width="50px" alt=" imed-logo" src="../assets/image/imed-logo.jpg"> &nbsp;
 
 
+        <button class="navbar-toggler d-lg-none" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"
+            data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    &nbsp; &nbsp; <a class="navbar-brand" routerLink="/home" routerLinkActive="active-link"> Home </a>
+                </li>
+                <li class="nav-item active" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()">
+                    <a class="nav-link" routerLink="/admission" routerLinkActive="active-link"
+                        (click)="isMenuCollapsed = true">
+                        Admission<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()">
+                    <a class="nav-link" routerLink="/examination" (click)="isMenuCollapsed = true">
+                        Examination </a>
+                </li>
+    
+                <li class="nav-item active" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()">
+                    <a class="nav-link" routerLink="/contact" (click)="isMenuCollapsed = true">
+                        Contact </a>
+                </li>
 
-        </ul>
-    </div>
-</nav>
+
+                <!-- <li class="nav-item" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" ngbDropdown>
+                    <a class="nav-link dropdown-toggle" tabindex="0" ngbDropdownToggle id="navbarDropdown1"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Courses</a>
+                    <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu bg-primary text-white">
+
+                        <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="" ngbDropdownItem>
+                            MCA</a>
+                        <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="" ngbDropdownItem>
+                            MBA</a>
+                        <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="" ngbDropdownItem>
+                            BBA</a>
+                        <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="" ngbDropdownItem>BCA</a>
+
+
+                        <a class="dropdown-item" (click)="isMenuCollapsed = true" routerLink="#" ngbDropdownItem>Log In</a> 
+                    </div>
+                </li>  -->
+
+
+
+                <li>
+                    <div class="btn-group" *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" dropdown>
+                        <button id="button-animated" dropdownToggle type="button"
+                            class="btn btn-primary dropdown-toggle" aria-controls="dropdown-animated"
+                            routerLinkActive="active-link" (click)="isMenuCollapsed = true">
+                            Courses{{name}} <span class="caret"></span>
+                        </button>
+                        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-animated">
+                            <li role="menuitem">
+                                <a class="dropdown-item" routerLink="/bca" (click)="isMenuCollapsed = true">
+                                    BCA </a>
+                            </li>
+
+                            <!-- <a class="dropdown-item" routerLink="/bcaI" (click)="isMenuCollapsed = true"> BCA-I</a>
+                        <a class="dropdown-item" routerLink="/bcaII" (click)="isMenuCollapsed = true"> BCA-II</a>
+                        <a class="dropdown-item" routerLink="/bcaIII" (click)="isMenuCollapsed = true"> BCA-III</a>
+                        <a class="dropdown-item" routerLink="/bcaIV" (click)="isMenuCollapsed = true"> BCA-IV</a>
+                        <a class="dropdown-item" routerLink="/bcaV" (click)="isMenuCollapsed = true"> BCA-V</a>
+                        <a class="dropdown-item" routerLink="/bcaVI" (click)="isMenuCollapsed = true"> BCA-VI</a> -->
+
+
+                            <li role="menuitem"><a class="dropdown-item" routerLink="/mca"
+                                    (click)="isMenuCollapsed = true">
+                                    MCA</a> </li>
+                            <li role="menuitem"><a class="dropdown-item" routerLink="/bba"
+                                    (click)="isMenuCollapsed = true">
+                                    BBA</a></li>
+                            <li role="menuitem"><a class="dropdown-item" routerLink="/mba"
+                                    (click)="isMenuCollapsed = true">
+                                    MBA</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="\login"> Login </a>
+                </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0 logout" 
+                    routerLink="/register">Register</button>
+                <button class="btn btn-outline-danger my-2 my-sm-0 logout" type="logout"
+                    routerLink="/logout">logout</button>
+            </form>
+            <ul>
+
+
+
+            </ul>
+        </div>
+    </nav>
+</header>

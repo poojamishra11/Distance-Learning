@@ -1,0 +1,9 @@
+img{
+    height: 450px;
+    position: relative;
+    background-color: #fff;
+}
+
+img:hover{
+    opacity: .8;
+}

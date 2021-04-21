@@ -1,0 +1,33 @@
+<div class="container"> 
+<form class="row g-3" style="background-color:rgb(240, 231, 233);width: 28rem;" [formGroup]="registerUsers" (ngSubmit)="handleRegister()">
+    <div class="col-md-6">
+      <br><label for="inputEmail4" class="form-label">First Name</label>
+      <input type="firstname" class="form-control" id="inputEmail4"  placeholder="first name" formControlName="firstname">
+    </div>
+    <div class="col-md-6" >
+      <br><label for="inputPassword4" class="form-label">Last Name</label>
+      <input type="lastname" class="form-control" id="inputPassword4" placeholder="last name" formControlName="lastname"><br>
+    </div>
+    <div class="col-12">
+      <label for="username" class="form-label">User Name</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="required" formControlName="username"><br>
+    </div>
+    <div class="col-12">
+      <label for="password" class="form-label">Password</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="more than 8 character" formControlName="password"><br>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label><br>
+      </div>
+    </div>
+    <div class="col-12">
+      <button  class="btn btn-primary"> Login </button>
+      <div class="alert alert-warning" *ngIf='invalidRegister'> {{ errorMessage }} </div>
+
+    </div>
+  </form>
+</div>
